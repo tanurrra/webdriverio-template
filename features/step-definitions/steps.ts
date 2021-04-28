@@ -1,22 +1,16 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 
-import LoginPage from '../login.page';
-import SecurePage from '../secure.page';
+import LoginPage from '../pageobjects/login.page';
+import HomePage from '../pageobjects/home.page';
 
 const pages = {
     login: LoginPage
 }
 
-Given(/^I am on the (\w+) page$/, async (page) => {
-    await pages[page].open()
+Given(/^I am on locale (\w+) home page with forced accepted cookies$/, async (locale) => {
+    await pages[locale].open()
 });
 
 When(/^I login with (\w+) and (.+)$/, async (username, password) => {
     await LoginPage.login(username, password)
 });
-
-Then(/^I should see a flash message saying (.*)$/, async (message) => {
-    await expect(SecurePage.flashAlert).toBeExisting();
-    await expect(SecurePage.flashAlert).toHaveTextContaining(message);
-});
-

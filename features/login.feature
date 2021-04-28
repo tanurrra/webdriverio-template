@@ -1,12 +1,13 @@
-Feature: The Internet Guinea Pig Website
+Feature: Authentication
 
-  Scenario Outline: As a user, I can log into the secure area
+  Scenario Outline: Login with valid details
 
-    Given I am on the login page
-    When I login with <username> and <password>
-    Then I should see a flash message saying <message>
+    Given I am on locale <locale> home page with forced accepted cookies
+    And in header I open sign in panel
+    When I login with <email> and <password>
+    And I wait until AuthPanel.SignInEmailInput is not displayed
+    Then in header I see I am logged in
 
     Examples:
-      | username | password             | message                        |
-      | tomsmith | SuperSecretPassword! | You logged into a secure area! |
-      | foobar   | barfoo               | Your username is invalid!      |
+      | locale | email         | password |
+      | nl     | update@me.com | 12345678 |

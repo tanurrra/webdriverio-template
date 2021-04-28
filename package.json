@@ -1,10 +1,14 @@
 {
   "name": "webdriverio-new",
   "version": "1.0.0",
-  "description": "MIT",
+  "description": "webdriverIO with cucumberBDD template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf rimraf build && rimraf output && mkdirp output",
+    "build": "tsc --outDir build -p tsconfig.build.json",
+    "test": "npm run wdio ./config/wdio.conf.js",
+    "test-local": "npm run wdio ./config/wdio.local.conf.js",
+    "selenium-start": "selenium-standalone start --config=./selenium.json"
   },
   "repository": {
     "type": "git",
@@ -19,16 +23,20 @@
   "devDependencies": {
     "@wdio/allure-reporter": "^7.4.2",
     "@wdio/appium-service": "^7.5.0",
+    "@wdio/cli": "^7.5.2",
     "@wdio/cucumber-framework": "^7.5.1",
     "@wdio/firefox-profile-service": "^7.4.2",
     "@wdio/local-runner": "^7.5.1",
     "@wdio/selenium-standalone-service": "^7.5.0",
     "@wdio/spec-reporter": "^7.4.3",
+    "chai": "^4.3.4",
+    "selenium-standalone": "^6.23.0",
+    "typescript": "^4.2.4",
+    "typescript-ioc": "^3.2.2",
+    "wdio-chromedriver-service": "^7.0.0",
     "wdio-docker-service": "^3.1.2",
     "wdio-image-comparison-service": "^2.3.0",
-    "webdriverio": "^7.5.1"
+    "webdriverio": "^7.5.2"
   },
-  "dependencies": {
-    "@wdio/cli": "^7.5.1"
-  }
+  "dependencies": {}
 }
